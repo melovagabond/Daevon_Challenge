@@ -1,0 +1,14 @@
+version: "3.8"
+
+services:
+  web:
+    build: .
+    image: my-webpage
+    container_name: my-webpage-container
+    volumes:
+      - ./default.conf:/etc/nginx/conf.d/default.conf
+      - ./index.html:/usr/share/nginx/html/index.html
+      - /certs:/etc/nginx/ssl
+    ports:
+      - "80:80"
+      - "443:443"
