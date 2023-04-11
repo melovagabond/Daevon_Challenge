@@ -51,6 +51,14 @@ pipeline {
             }
         }
 
+        stage('Terraform plan'){
+            steps {
+                dir ('terraform'){
+                    sh 'terraform plan'
+                }
+            }
+        }
+
         stage('Terraform apply') {
             steps {
                 dir('terraform') {
@@ -60,11 +68,11 @@ pipeline {
         }
     }
 
-    post {
-        always {
-            dir('terraform') {
-                sh 'terraform destroy -auto-approve'
-            }
-        }
-    }
+    // post {
+    //     always {
+    //         dir('terraform') {
+    //             sh 'terraform destroy -auto-approve'
+    //         }
+    //     }
+    // }
 }
