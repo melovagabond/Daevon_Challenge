@@ -1,0 +1,62 @@
+---
+fail_fast: true
+repos:
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v3.4.0
+    hooks:
+      - id: check-json
+        exclude: '^questionnaires/'
+      - id: check-yaml
+        files: '\.(yaml|yml)$'
+        exclude: '(.*templates/|.*crds/)'
+      - id: check-xml
+      - id: check-toml
+      - id: check-symlinks
+      - id: check-executables-have-shebangs
+      - id: check-added-large-files
+        exclude: '.*css/'
+      - id: end-of-file-fixer
+      - id: detect-aws-credentials
+        args: [--allow-missing-credentials]
+      - id: detect-private-key
+      - id: trailing-whitespace
+  - repo: https://github.com/adrienverge/yamllint
+    rev: v1.26.0
+    hooks:
+      - id: yamllint
+        args: [--format, parsable, --strict]
+  - repo: https://github.com/jumanjihouse/pre-commit-hooks
+    rev: 2.1.5
+    hooks:
+      - id: script-must-have-extension
+      - id: shellcheck
+        additional_dependencies: []
+        # This is a busy box file, were just checking it in
+        exclude: '.*/etc/udhcpc/default.script'
+      - id: shfmt
+  - repo: https://github.com/ansible/ansible-lint.git
+    rev: v4.3.0a2
+    hooks:
+      - id: ansible-lint
+        files: \.(yaml|yml)$
+  - repo: https://github.com/IamTheFij/docker-pre-commit.git
+    rev: v2.0.0
+    hooks:
+      - id: hadolint-system
+      - id: docker-compose-check
+        files: docker-stack-deploy.y[a]{0,1}ml$
+  - repo: https://github.com/antonbabenko/pre-commit-terraform
+    rev: v1.46.0
+    hooks:
+      - id: terraform_fmt
+      - id: terraform_docs
+      # This runs checkov -d . on the root directory
+      # Which has a lot of errors. We need to dedicate
+      # some time to fixing these.
+      # - id: checkov
+  - repo: https://github.com/Yelp/detect-secrets.git
+    rev: v1.1.0
+    hooks:
+      - id: detect-secrets
+        files: .*
+        args: [--baseline .envrc]
