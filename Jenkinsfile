@@ -11,10 +11,8 @@ pipeline {
   environment {
       MASTER_BRANCH    = "develop"
       GIT_SSH_URL      = "git@github.com:melovagabond/Daevon_Challenge.git"
-      CONSUL_HTTP_ADDR = "http://tasks.consul-agent:8500"
       ST_PROJECT       = "Daevon_Challenge"
       SSH_CREDENTIAL   = "jenkins-git-ssh-key"
-      DRP_DC_TO_UPDATE = "/tmp/DRP_DC_TO_UPDATE.txt"
       ANSIBLE_COLOR_DEBUG           = "bright purple"
   }
 
