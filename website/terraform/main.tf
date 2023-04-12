@@ -113,5 +113,3 @@ resource "aws_instance" "dev_node" {
   }
 
 }
-
-

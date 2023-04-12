@@ -47,13 +47,13 @@ pipeline {
                 sh("terraform init -reconfigure")
             }
         }
-        
+
         stage ("plan"){
             steps{
                 sh("terraform plan")
             }
         }
-        
+
         stage ("action"){
             steps {
                 echo "Terraform action is --> ${action}"

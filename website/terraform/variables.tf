@@ -34,6 +34,6 @@ variable "host_os" {
   default = "linux"
 }
 
-variable "wan_ip"{
+variable "wan_ip" {
   type = string
 }

@@ -3,7 +3,7 @@ import re
 def is_valid_credit_card_number(number):
     # Remove hyphens and spaces from the number
     number = number.replace("-", "")
-    
+
     # Check if the number matches the required pattern
     if not re.match(r'^[3456]\d{3}(?:[ -]?\d{4}){3}$', number):
         return False
