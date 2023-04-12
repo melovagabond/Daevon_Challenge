@@ -5,6 +5,11 @@ pipeline {
     buildDiscarder(logRotator(numToKeepStr: '5'))
   }
   stages {
+    stage('Set mvnw permissions'){
+      steps{
+        sh 'chmod +x mvnw'
+      }
+    }
     stage('Scan') {
       steps {
         withSonarQubeEnv(installationName: 'sq1') { 
