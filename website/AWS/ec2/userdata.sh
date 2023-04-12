@@ -8,7 +8,7 @@ sudo usermod -aG docker ubuntu
 # Download your project's files to the instance
 sudo apt install -y git
 git clone https://github.com/melovagabond/Daevon_Challenge.git
-cd Daevon_Challenge/website/docker
+cd Daevon_Challenge/website/docker || return
 
 # Build and run the Docker container
 sudo docker build -t webpage .
