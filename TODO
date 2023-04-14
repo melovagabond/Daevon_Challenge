@@ -1,4 +1,7 @@
+TODO
+
 Add in Jenkins pipeline to run EC2 then Cloudflare
 Test EC2 and Docker code independent from Cloudflare
 Integrate Vault
 Test SSL is generated and integrated to Container
+Test use CI with Gitlab
