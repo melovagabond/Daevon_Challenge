@@ -46,11 +46,11 @@ variable "instance_name" {
 variable "ssl_cert_path" {
   type        = string
   description = "Path to the SSL certificate"
-  default     = "~/certs/server.crt"
+  default     = "./certs/server.crt"
 }
 
 variable "ssl_key_path" {
   type        = string
   description = "Path to the SSL private key"
-  default     = "~/certs/server.key"
+  default     = "./certs/server.key"
 }
