@@ -37,33 +37,27 @@ pipeline {
                 }
             }
         }
-        stage('Checkout') {
+        stage('checkout') {
             steps {
-                git url: 'https://github.com/melovagabond/Daevon_Challenge.git', branch: 'develop'
+                checkout scmGit(branches: [[name: '*/develop']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/melovagabond/Daevon_Challenge.git']])
+            }
+        }
+        stage ("init"){
+            steps{
+                sh("terraform init -reconfigure")
             }
         }
 
-        stage('Terraform init') {
-            steps {
-                dir('terraform') {
-                    sh 'terraform init'
-                }
+        stage ("plan"){
+            steps{
+                sh("terraform plan")
             }
         }
 
-        stage('Terraform plan'){
+        stage ("action"){
             steps {
-                dir ('terraform'){
-                    sh 'terraform plan'
-                }
-            }
-        }
-
-        stage('Terraform apply') {
-            steps {
-                dir('terraform') {
-                    sh 'terraform apply -auto-approve'
-                }
+                echo "Terraform action is --> ${action}"
+                sh("terraform ${action} --auto-approve")
             }
         }
     }

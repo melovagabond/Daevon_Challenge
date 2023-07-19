@@ -61,10 +61,17 @@ resource "aws_route_table_association" "daevolab_public_assoc" {
 resource "aws_security_group" "daevonlab_sg" {
   name        = "dev_sg"
   description = "Allow inbound traffic for Nginx web server"
-  vpc_id      = aws_vpc.daevonlab_vpc.id
+  vpc_id = aws_vpc.daevonlab_vpc.id
 
   ingress {
     from_port   = 443
+    to_port     = 443
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
+    ingress {
+    from_port   = 80
     to_port     = 443
     protocol    = "tcp"
     cidr_blocks = ["0.0.0.0/0"]
