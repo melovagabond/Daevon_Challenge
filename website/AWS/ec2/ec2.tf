@@ -19,27 +19,27 @@ resource "aws_instance" "nginx_web_server" {
     Name = var.instance_name
   }
 
-  provisioner "file" {
-    source      = var.ssl_cert_path
-    destination = "/tmp/nginx-selfsigned.crt"
-    connection {
-      type        = "ssh"
-      user        = "ubuntu"
-      private_key = file("~/.ssh/daevonbkey")
-      host        = self.public_ip 
-    }
-  }
+  # provisioner "file" {
+  #   source      = var.ssl_cert_path
+  #   destination = "/tmp/nginx-selfsigned.crt"
+  #   connection {
+  #     type        = "ssh"
+  #     user        = "ubuntu"
+  #     private_key = file("~/.ssh/daevonbkey")
+  #     host        = self.public_ip 
+  #   }
+  # }
 
-  provisioner "file" {
-    source      = var.ssl_key_path
-    destination = "/tmp/nginx-selfsigned.key"
-    connection {
-      type        = "ssh"
-      user        = "ubuntu" 
-      private_key = file("~/.ssh/daevonbkey")
-      host        = self.public_ip
-    }
-  }
+  # provisioner "file" {
+  #   source      = var.ssl_key_path
+  #   destination = "/tmp/nginx-selfsigned.key"
+  #   connection {
+  #     type        = "ssh"
+  #     user        = "ubuntu" 
+  #     private_key = file("~/.ssh/daevonbkey")
+  #     host        = self.public_ip
+  #   }
+  # }
   
 
 }
