@@ -63,6 +63,15 @@ resource "aws_security_group" "daevonlab_sg" {
   description = "Allow inbound traffic for Nginx web server"
   vpc_id      = aws_vpc.daevonlab_vpc.id
 
+
+# Allow SSH access during configuration
+  ingress {
+    from_port   = 22
+    to_port     = 22
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
   ingress {
     from_port   = 443
     to_port     = 443
