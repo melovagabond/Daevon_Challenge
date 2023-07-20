@@ -8,6 +8,11 @@ pipeline {
     }
 
     stages {
+        stage('Clean Workspace') {
+            steps {
+                cleanWs()
+            }
+        }
         stage('Clone Repository') {
             steps {
                 echo "Cloning the remote Git repository..."
@@ -38,7 +43,11 @@ pipeline {
         stage('SonarQube Analysis') {
             steps {
                 echo "Running SonarQube analysis..."
-                sh 'mvn clean verify sonar:sonar -Dsonar.projectKey=SE-4495 -Dsonar.projectName=\'SED\' -Dsonar.host.url=http://10.0.0.250:9000 -Dsonar.login=sqp_ac3b6f9838c2f78497038d1dff40cf67f41eaa69'
+                sh 'mvn clean verify sonar:sonar \
+                    -Dsonar.projectKey=SE-4495 \
+                    -Dsonar.projectName="SED" \
+                    -Dsonar.host.url=http://10.0.0.250:9000 \
+                    -Dsonar.login=sqp_ac3b6f9838c2f78497038d1dff40cf67f41eaa69'
             }
         }
     }
