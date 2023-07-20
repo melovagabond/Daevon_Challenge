@@ -8,8 +8,8 @@
     <artifactId>my-java-project</artifactId>
     <version>1.0.0</version>
     
-    <name>My Java Project</name>
-    <description>This is a sample Java project built with Maven.</description>
+    <name>SED</name>
+    <description>This is a coding challenge.</description>
     <url>https://github.com/melovagabond/Daevon_Challenge</url>
     
     <licenses>
