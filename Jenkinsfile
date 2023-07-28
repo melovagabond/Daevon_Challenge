@@ -14,7 +14,16 @@ pipeline {
                 git branch: 'jenkins', url: 'https://github.com/melovagabond/Daevon_Challenge.git'
             }
         }
-        
+        stage('SonarQube Analysis') {
+            steps {
+                echo "Running SonarQube analysis..."
+                sh 'mvn clean verify sonar:sonar \
+                    -Dsonar.projectKey=SE-4495 \
+                    -Dsonar.projectName="SED" \
+                    -Dsonar.host.url=http://10.0.0.250:9000 \
+                    -Dsonar.login=sqp_ac3b6f9838c2f78497038d1dff40cf67f41eaa69'
+            }
+        }
         stage('Terraform') {
             steps {
                 script {
@@ -32,6 +41,14 @@ pipeline {
                         error('Invalid option selected!')
                     }
                 }
+            }
+        }
+        stage('Clean Workspace') {
+            when {
+                expression {params.TERRAFORM_COMMAND == 'destroy'}
+            }
+            steps {
+                cleanWs()
             }
         }
     }
