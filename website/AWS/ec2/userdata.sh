@@ -16,7 +16,6 @@ mkdir certs
 openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout ./certs/server.key -out ./certs/server.crt -subj "/C=US/ST=Pennsylvania/L=Philadelphia/O=Daevonlab/OU=R&D/CN=localhost"
 chmod -R 777 ./certs/*
 
-
 # Build and run the Docker container
 sudo docker build -t webpage .
 sudo docker run -d -p 443:443 --name webpage-container webpage
