@@ -15,11 +15,15 @@ pipeline {
             }
         }
         stage('SonarQube Analysis') {
+            environment {
+                PATH = "${PATH}:/opt/sonar-scanner/bin"
+            }
             steps {
                 echo "Running SonarQube analysis..."
-                sh 'mvn clean verify sonar:sonar \
+                sh 'sonar-scanner \
                     -Dsonar.projectKey=SE-4495 \
                     -Dsonar.projectName="SED" \
+                    -Dsonar.sources=. \
                     -Dsonar.host.url=http://10.0.0.250:9000 \
                     -Dsonar.login=sqp_ac3b6f9838c2f78497038d1dff40cf67f41eaa69'
             }
