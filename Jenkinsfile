@@ -25,7 +25,7 @@ pipeline {
                     -Dsonar.projectName="SED" \
                     -Dsonar.sources=. \
                     -Dsonar.host.url=http://10.0.0.250:9000 \
-                    -Dsonar.login=sqp_ac3b6f9838c2f78497038d1dff40cf67f41eaa69'
+                    -Dsonar.login=\$SONAR_SED'
             }
         }
         stage('Terraform') {
